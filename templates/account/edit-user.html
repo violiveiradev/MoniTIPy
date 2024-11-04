@@ -1,0 +1,48 @@
+{% extends 'home/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<body class="form-body">
+    <div class="register-container">
+        <h2>Editar Usuário</h2>
+        <form action="{% url 'edit_user' user.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="full-name">Nome Completo:</label>
+                <input type="text" id="full-name" name="full_name" value="{{ user.first_name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" value="{{ user.username }}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Nova Senha (deixe em branco para manter a atual):</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirmar Nova Senha:</label>
+                <input type="password" id="confirm-password" name="confirm_password">
+            </div>
+            <div class="form-group">
+                <label for="group">Grupo</label>
+                <select id="group" name="group" required>
+                    <option value="">Selecione um grupo</option>
+                    {% for group in groups %}
+                        <option value="{{ group.name }}" {% if group in user.groups.all %}selected{% endif %}>{{ group.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="register-button">Salvar Alterações</button>
+        </form>
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}
+

@@ -1,0 +1,134 @@
+/* Importação de fontes e variáveis de estilo fornecidas */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+:root{
+    --base-clr: #11121a;
+    --line-clr: #42434a;
+    --hover-clr: #222533;
+    --text-clr: #e6e6ef;
+    --accent-clr: #5e63ff;
+    --secondary-text-clr: #b0b3c1;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--base-clr);
+    font-family: Poppins, sans-serif;
+    color: var(--text-clr);
+}
+
+/* Estilos da tela de login */
+.login-container {
+    background-color: var(--base-clr);
+    border: 1px solid var(--line-clr);
+    border-radius: 10px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: var(--text-clr);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: var(--secondary-text-clr);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--line-clr);
+    border-radius: 5px;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    box-sizing: border-box;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--accent-clr);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.login-button:hover {
+    background-color: var(--hover-clr);
+}
+
+/* Estilos da tela de registro */
+.register-container {
+    background-color: var(--base-clr);
+    border: 1px solid var(--line-clr);
+    border-radius: 10px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    color: var(--text-clr);
+}
+
+.register-container h2 {
+    margin-bottom: 20px;
+    color: var(--text-clr);
+}
+
+.register-container label {
+    font-size: 0.9rem;
+    color: var(--secondary-text-clr);
+}
+
+.register-container input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--line-clr);
+    border-radius: 5px;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    box-sizing: border-box;
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--accent-clr);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.register-button:hover {
+    background-color: var(--hover-clr);
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--line-clr);
+    border-radius: 5px;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    font-size: 1rem;
+}
+
