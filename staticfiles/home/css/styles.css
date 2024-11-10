@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-:root{
-    --base-clr: #11121a;
-    --line-clr: #42434a;
-    --hover-clr: #222533;
-    --text-clr: #e6e6ef;
-    --accent-clr: #5e63ff;
-    --secondary-text-clr: #b0b3c1;
+:root {
+    --base-clr: #1a1a1a; /* Cor de fundo primária em cinza escuro */
+    --line-clr: #4a4a4a; /* Cor das linhas e bordas em cinza */
+    --hover-clr: #2e2e2e; /* Cor de hover em cinza escuro */
+    --text-clr: #f0f0f0; /* Cor do texto em branco */
+    --accent-clr: #ff4a4a; /* Cor de destaque em vermelho */
+    --secondary-text-clr: #c4c4c4; /* Cor de texto secundário em cinza */
 }
 
 .light-theme {
-    --base-clr: #ffffff;
-    --line-clr: #e0e0e0;
-    --hover-clr: #f2f2f2;
-    --text-clr: #333333;
-    --accent-clr: #4a4cff;
-    --secondary-text-clr: #666666;
+    --base-clr: #ffffff; /* Fundo branco */
+    --line-clr: #cccccc; /* Linhas em cinza claro */
+    --hover-clr: #ededed; /* Hover em cinza claro */
+    --text-clr: #1a1a1a; /* Texto em cinza escuro */
+    --accent-clr: #ff4a4a; /* Destaque em vermelho */
+    --secondary-text-clr: #666666; /* Texto secundário em cinza médio */
 }
 
 *{
@@ -25,9 +25,8 @@ html{
     font-family: Poppins, 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5rem;
 }
-body{
+.sidebar-body{
     min-height: 100vh;
-    min-height: 100dvh;
     background-color: var(--base-clr);
     color: var(--text-clr);
     display: grid;
@@ -35,7 +34,7 @@ body{
 }
 #sidebar{
     box-sizing: border-box;
-    height: 100vh;
+    height: 100%;
     width: 250px;
     padding: 5px 1em;
     background-color: var(--base-clr);
@@ -47,6 +46,7 @@ body{
     transition: 300ms ease-in-out;
     overflow: hidden;
     text-wrap: nowrap;
+    box-shadow: 2px 0 5px var(--hover-clr); /* Sutil sombra lateral */
 }
 #sidebar.close{
     padding: 5px;
@@ -124,7 +124,7 @@ body{
 .rotate svg:last-child{
     rotate: 180deg;
 }
-#sidebar .sub-menu a{
+#sidebar .sub-menu a, #sidebar .theme-toggle-btn{
     padding-left: 2em;
 }
 
@@ -163,6 +163,178 @@ main p{
 }
 
 
+/* Estilos da tela de login */
+.form-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--base-clr);
+    font-family: Poppins, sans-serif;
+    color: var(--text-clr);
+}
+
+.login-container {
+    background-color: var(--base-clr);
+    border: 1px solid var(--line-clr);
+    border-radius: 10px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: var(--text-clr);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: var(--secondary-text-clr);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--line-clr);
+    border-radius: 5px;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    box-sizing: border-box;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--accent-clr);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.login-button:hover {
+    background-color: var(--hover-clr);
+}
+
+/* Estilos da tela de registro */
+.form-user-container {
+    background-color: var(--base-clr);
+    /*border: 1px solid var(--line-clr);*/
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    /*text-align: center;*/
+    /*margin: auto;*/
+    color: var(--text-clr);
+}
+
+.form-user-container h2 {
+    margin-bottom: 20px;
+    color: var(--text-clr);
+}
+
+.form-user-container label {
+    font-size: 0.9rem;
+    color: var(--secondary-text-clr);
+}
+
+.form-user-container input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--line-clr);
+    border-radius: 5px;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    box-sizing: border-box;
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--accent-clr);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.register-button:hover {
+    background-color: var(--hover-clr);
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--line-clr);
+    border-radius: 5px;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    font-size: 1rem;
+}
+
+/* Estilo para a tabela de lista de usuários */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    /*border-bottom: 1px solid var(--line-clr);*/
+    color: var(--text-clr);
+}
+
+table th {
+    background-color: var(--line-clr);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: var(--hover-clr);
+}
+
+table tbody tr:hover {
+    background-color: var(--accent-clr);
+    color: #ffffff; /* Texto branco no hover */
+}
+
+table a {
+    color: var(--accent-clr);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+table a:hover {
+    color: #ffffff;
+}
+
+/* Mensagem para quando a lista de usuários estiver vazia */
+table tbody tr td[colspan="4"] {
+    text-align: center;
+    font-style: italic;
+    color: var(--secondary-text-clr);
+    padding: 20px;
+}
+
+
 @media(max-width: 800px){
     body{
         grid-template-columns: 1fr;
@@ -170,9 +342,16 @@ main p{
     main{
         padding: 2em 1em 60px 1em;
     }
+
     .container{
-        border: none;
-        padding: 0;
+        border: 1px solid var(--line-clr);
+        border-radius: 1em;
+        margin-bottom: 10px;
+        padding: min(3em, 5%);
+    
+        h2, p{ 
+            margin-top: 1em;
+        }
     }
     #sidebar{
         height: 60px;
@@ -211,7 +390,7 @@ main p{
             position: fixed;
             bottom: 60px;
             left: 0;
-            box-sizing: border-box;
+            /*box-sizing: border-box;*/
             height: 60px;
             width: 100%;
             background-color: var(--hover-clr);
@@ -234,6 +413,55 @@ main p{
         }
     }
     #sidebar .theme-toggle-btn{
-        padding-left: 0;
+        padding-left: .5em;
     }
+
+    /* Ajuste da tabela para ocupar toda a largura da tela e permitir rolagem horizontal */
+    .container-table {
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+        /*min-width: 600px; /* Definindo uma largura mínima para a tabela */
+        font-size: 0.9rem; /* Reduzindo o tamanho da fonte */
+    }
+
+    table th, table td {
+        padding: 8px; /* Reduzindo o padding das células */
+    }
+
+    /* Ajuste para manter as ações de editar e excluir com um layout compacto */
+    table a {
+        font-size: 0.85rem; /* Reduzindo a fonte dos links */
+        padding: 5px 8px; /* Ajuste de padding nos links */
+    }
+
+    /* Linha de detalhes oculta por padrão */
+    .user-details {
+        display: none;
+    }
+    
+    .expandable-row {
+        cursor: pointer;
+    }
+    
+    .arrow {
+        font-size: 0.8em;
+        margin-left: 8px;
+    }
+    
+    /* Estilo quando expandido */
+    .expandable-row.active .arrow {
+        transform: rotate(180deg); /* Roda a seta para cima */
+    }
+
+    /* Estilos da tela de registro */
+    .form-user-container {
+        max-width: 90%;
+        width: 100%;
+        color: var(--text-clr);
+    }
+    
 }

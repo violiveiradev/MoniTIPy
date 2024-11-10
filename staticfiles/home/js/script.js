@@ -12,13 +12,22 @@ function toggleSidebar(){
 }
 
 function toggleSubMenu(button){
+    const submenu = button.nextElementSibling;
 
-    if(!button.nextElementSibling.classList.contains('show')){
+    if(!submenu.classList.contains('show')){
         closeAllSubMenus();
     }
 
-    button.nextElementSibling.classList.toggle('show');
+    submenu.classList.toggle('show');
     button.classList.toggle('rotate');
+
+    submenu.querySelectorAll('a').forEach(link => {
+        if (submenu.classList.contains('show')) {
+            link.removeAttribute('tabindex');
+        } else {
+            link.setAttribute('tabindex', '-1');
+        }
+    });
 
     if(sidebar.classList.contains('close')){
         sidebar.classList.toggle('close');
@@ -27,9 +36,14 @@ function toggleSubMenu(button){
 }
 
 function closeAllSubMenus(){
-    Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
-        ul.classList.remove('show');
-        ul.previousElementSibling.classList.remove('rotate');
+    Array.from(sidebar.getElementsByClassName('show')).forEach(submenu => {
+        submenu.classList.remove('show');
+        submenu.previousElementSibling.classList.remove('rotate');
+
+        submenu.querySelectorAll('a').forEach(link => {
+            link.setAttribute('tabindex', '-1');
+        });
+
     });
 }
 
@@ -41,4 +55,28 @@ function toggleTheme() {
 
     // Salva a preferência no localStorage
     localStorage.setItem('theme', isLightTheme ? 'light' : 'dark');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.sub-menu').forEach(submenu => {
+        if (!submenu.classList.contains('show')) {
+            submenu.querySelectorAll('a').forEach(link => {
+                link.setAttribute('tabindex', '-1'); // Ignora links dos submenus ocultos
+            });
+        }
+    });
+});
+
+function toggleDetails(row) {
+    // Encontra a linha de detalhes logo abaixo da linha principal
+    const detailsRow = row.parentElement.nextElementSibling;
+    
+    // Alterna a exibição da linha de detalhes
+    if (detailsRow.style.display === "table-row") {
+        detailsRow.style.display = "none";
+        row.classList.remove("active");
+    } else {
+        detailsRow.style.display = "table-row";
+        row.classList.add("active");
+    }
 }

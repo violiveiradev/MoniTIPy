@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User, Group
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User, Group
+from django.core.paginator import Paginator
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 def login_view(request):
@@ -23,8 +25,24 @@ def logout_view(request):
 
 # View para listar usuários
 def user_list(request):
-    users = User.objects.all()
-    return render(request, 'account/user-management.html', {'users': users})
+    # Obter o valor de busca, se existir
+    search_query = request.GET.get('search', '')
+
+    # Filtrar usuários com base no nome completo ou nome de usuário
+    if search_query:
+        users = User.objects.filter(username__icontains=search_query) | User.objects.filter(first_name__icontains=search_query) | User.objects.filter(last_name__icontains=search_query)
+    else:
+        users = User.objects.all()
+
+    # Pré-carregar os grupos para cada usuário
+    users = users.prefetch_related('groups')
+
+    # Configuração da paginação
+    paginator = Paginator(users, 10)  # 10 usuários por página
+    page_number = request.GET.get('page')
+    users_page = paginator.get_page(page_number)
+
+    return render(request, 'account/user-management.html', {'users': users_page, 'search_query': search_query})
 
 # View para adicionar usuário
 def add_user(request):
@@ -98,8 +116,42 @@ def edit_user(request, user_id):
     return render(request, 'account/edit-user.html', {'user': user, 'groups': groups})
 
 # View para excluir usuário
-def delete_user(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    user.delete()
-    messages.success(request, 'Usuário excluído com sucesso!')
+def delete_users(request):
+    if request.method == 'POST':
+        user_ids = request.POST.getlist('selected_users')
+        User.objects.filter(id__in=user_ids).delete()
+        messages.success(request, 'Usuários selecionados excluídos com sucesso.')
     return redirect('user_list')
+
+
+def edit_profile(request):
+    user = request.user
+
+    if request.method == 'POST':
+        full_name = request.POST.get('full_name')
+        user.username = request.POST.get('username')
+        user.email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        group_name = request.POST.get('group')
+
+        # Verifica se as senhas coincidem, caso uma nova senha seja informada
+        if password and password == confirm_password:
+            user.set_password(password)
+        elif password:
+            messages.error(request, 'As senhas não coincidem.')
+            return redirect('edit_profile')
+
+        user.first_name = full_name  # Salva o nome completo
+        user.save()
+
+                # Atualiza o grupo do usuário
+        if group_name:
+            group, created = Group.objects.get_or_create(name=group_name)
+            user.groups.set([group])
+
+        messages.success(request, 'Perfil atualizado com sucesso!')
+        return redirect('edit_profile')
+    
+    groups = Group.objects.all()
+    return render(request, 'account/edit-profile.html', {'user': user, 'groups': groups})

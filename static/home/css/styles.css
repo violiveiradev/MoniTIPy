@@ -27,7 +27,6 @@ html{
 }
 .sidebar-body{
     min-height: 100vh;
-    min-height: 100dvh;
     background-color: var(--base-clr);
     color: var(--text-clr);
     display: grid;
@@ -35,7 +34,7 @@ html{
 }
 #sidebar{
     box-sizing: border-box;
-    height: 100vh;
+    height: 100%;
     width: 250px;
     padding: 5px 1em;
     background-color: var(--base-clr);
@@ -163,6 +162,42 @@ main p{
     }
 }
 
+/* Botoes */
+
+/* Botão padrão */
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+/* Botão de ação principal */
+.btn-accent {
+    background-color: var(--accent-clr);
+}
+
+.btn-accent:hover {
+    background-color: var(--hover-clr);
+}
+
+/* Botão de perigo (danger) */
+.btn-danger {
+    background-color: var(--accent-clr);
+    text-align: left;
+    margin-top: 20px;
+    width: unset;
+}
+
+.btn-danger:hover {
+    background-color: var(--hover-clr); /* Tom mais escuro no hover */
+}
 
 /* Estilos da tela de login */
 .form-body {
@@ -211,45 +246,30 @@ main p{
     box-sizing: border-box;
 }
 
-.login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--accent-clr);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.login-button:hover {
-    background-color: var(--hover-clr);
-}
-
 /* Estilos da tela de registro */
-.register-container {
+.form-user-container {
     background-color: var(--base-clr);
-    border: 1px solid var(--line-clr);
+    /*border: 1px solid var(--line-clr);*/
     border-radius: 10px;
-    padding: 40px;
-    max-width: 400px;
+    padding: 20px;
+    max-width: 600px;
     width: 100%;
-    text-align: center;
-    margin: auto;
+    /*text-align: center;*/
+    /*margin: auto;*/
     color: var(--text-clr);
 }
 
-.register-container h2 {
+.form-user-container h2 {
     margin-bottom: 20px;
     color: var(--text-clr);
 }
 
-.register-container label {
+.form-user-container label {
     font-size: 0.9rem;
     color: var(--secondary-text-clr);
 }
 
-.register-container input {
+.form-user-container input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -258,21 +278,6 @@ main p{
     background-color: var(--base-clr);
     color: var(--text-clr);
     box-sizing: border-box;
-}
-
-.register-button {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--accent-clr);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.register-button:hover {
-    background-color: var(--hover-clr);
 }
 
 .form-group select {
@@ -298,7 +303,7 @@ table {
 table th, table td {
     padding: 12px 15px;
     text-align: left;
-    /*border-bottom: 1px solid var(--line-clr);*/
+    border-bottom: 1px solid var(--line-clr);
     color: var(--text-clr);
 }
 
@@ -308,23 +313,13 @@ table th {
     text-transform: uppercase;
 }
 
-table tbody tr:nth-child(even) {
-    background-color: var(--hover-clr);
-}
-
 table tbody tr:hover {
-    background-color: var(--accent-clr);
+    background-color: var(--hover-clr);
     color: #ffffff; /* Texto branco no hover */
 }
 
-table a {
-    color: var(--accent-clr);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-table a:hover {
-    color: #ffffff;
+table svg {
+    fill: var(--text-clr);
 }
 
 /* Mensagem para quando a lista de usuários estiver vazia */
@@ -333,6 +328,10 @@ table tbody tr td[colspan="4"] {
     font-style: italic;
     color: var(--secondary-text-clr);
     padding: 20px;
+}
+
+.field-label {
+    display: none;
 }
 
 
@@ -424,18 +423,65 @@ table tbody tr td[colspan="4"] {
 
     table {
         width: 100%;
-        min-width: 600px; /* Definindo uma largura mínima para a tabela */
+        /*min-width: 600px; /* Definindo uma largura mínima para a tabela */
         font-size: 0.9rem; /* Reduzindo o tamanho da fonte */
     }
 
     table th, table td {
         padding: 8px; /* Reduzindo o padding das células */
+        border-bottom: none;
     }
 
     /* Ajuste para manter as ações de editar e excluir com um layout compacto */
-    table a {
-        font-size: 0.85rem; /* Reduzindo a fonte dos links */
-        padding: 5px 8px; /* Ajuste de padding nos links */
+    table svg {
+        fill: var(--text-clr);
+    }
+
+    /* Estilos da tela de registro */
+    .form-user-container {
+        max-width: 90%;
+        width: 100%;
+        color: var(--text-clr);
+    }
+
+    .user-table {
+        width: 100%;
+    }
+
+    .user-table thead, 
+    .user-checkbox,
+    .user-name, 
+    .user-email, 
+    .user-group, 
+    .user-actions {
+        display: none;
+    }
+
+    .user-row {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--line-clr);
+        padding: 10px;
+        margin-bottom: 5px;
+        position: relative;
+    }
+
+    .user-row .user-first-name {
+        display: inline-flex;
+        align-items: center;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .user-row .field-label {
+        font-weight: bold;
+        margin-right: 5px;
+        display: inline;
+    }
+
+    .user-row.expanded .user-name, .user-row.expanded .user-email, .user-row.expanded .user-group, .user-row.expanded .user-actions {
+        display: flex;
+        margin-top: 5px;
     }
     
 }

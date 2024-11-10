@@ -1,8 +1,11 @@
+{% extends 'home/base.html' %}
 
-{% include 'home/sidebar.html' %}
+{% block title %}Register{% endblock %}
 
-<main>
-    <div class="form-user-container">
+{% block content %}
+
+<body class="form-body">
+    <div class="register-container">
         <h2>Cadastro de Usuário</h2>
         <form action="{% url 'add_user' %}" method="post">
             {% csrf_token %}
@@ -35,10 +38,12 @@
                     {% endfor %}
                 </select>
             </div>
-            <button type="submit" class="btn btn-accent">Cadastrar</button>
+            <button type="submit" class="register-button">Cadastrar</button>
         </form>
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     </div>
-</main>
+</body>
+{% endblock %}
+

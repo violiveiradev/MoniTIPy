@@ -3,39 +3,39 @@
 
 <main>
     <div class="form-user-container">
-        <h2>Cadastro de Usuário</h2>
-        <form action="{% url 'add_user' %}" method="post">
+        <h2>Editar Perfil</h2>
+        <form action="{% url 'edit_profile' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
                 <label for="full-name">Nome Completo:</label>
-                <input type="text" id="full-name" name="full_name" required>
+                <input type="text" id="full-name" name="full_name" value="{{ user.first_name }}" required>
             </div>
             <div class="form-group">
                 <label for="username">Usuário:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" value="{{ user.username }}" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" value="{{ user.email }}" required>
             </div>
             <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required>
+                <label for="password">Nova Senha (deixe em branco para manter a atual):</label>
+                <input type="password" id="password" name="password">
             </div>
             <div class="form-group">
-                <label for="confirm-password">Confirmar Senha:</label>
-                <input type="password" id="confirm-password" name="confirm_password" required>
+                <label for="confirm-password">Confirmar Nova Senha:</label>
+                <input type="password" id="confirm-password" name="confirm_password">
             </div>
             <div class="form-group">
                 <label for="group">Grupo</label>
                 <select id="group" name="group" required>
                     <option value="">Selecione um grupo</option>
                     {% for group in groups %}
-                        <option value="{{ group.name }}">{{ group.name }}</option>
+                        <option value="{{ group.name }}" {% if group in user.groups.all %}selected{% endif %}>{{ group.name }}</option>
                     {% endfor %}
                 </select>
             </div>
-            <button type="submit" class="btn btn-accent">Cadastrar</button>
+            <button type="submit" class="btn btn-accent">Salvar Alterações</button>
         </form>
         {% for message in messages %}
             <p>{{ message }}</p>

@@ -1,13 +1,22 @@
 /* Importação de fontes e variáveis de estilo fornecidas */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
-:root{
-    --base-clr: #11121a;
-    --line-clr: #42434a;
-    --hover-clr: #222533;
-    --text-clr: #e6e6ef;
-    --accent-clr: #5e63ff;
-    --secondary-text-clr: #b0b3c1;
+:root {
+    --base-clr: #1a1a1a; /* Cor de fundo primária em cinza escuro */
+    --line-clr: #4a4a4a; /* Cor das linhas e bordas em cinza */
+    --hover-clr: #2e2e2e; /* Cor de hover em cinza escuro */
+    --text-clr: #f0f0f0; /* Cor do texto em branco */
+    --accent-clr: #ff4a4a; /* Cor de destaque em vermelho */
+    --secondary-text-clr: #c4c4c4; /* Cor de texto secundário em cinza */
+}
+
+.light-theme {
+    --base-clr: #ffffff; /* Fundo branco */
+    --line-clr: #cccccc; /* Linhas em cinza claro */
+    --hover-clr: #ededed; /* Hover em cinza claro */
+    --text-clr: #1a1a1a; /* Texto em cinza escuro */
+    --accent-clr: #ff4a4a; /* Destaque em vermelho */
+    --secondary-text-clr: #666666; /* Texto secundário em cinza médio */
 }
 
 body {
