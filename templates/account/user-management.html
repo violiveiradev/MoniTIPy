@@ -58,25 +58,25 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <div class="submit-row">
-                    <button type="submit" class="btn btn-danger">Excluir Selecionados</button>
-                </div>
             </form>
             <!-- Paginação -->
             <div class="pagination">
                 <span class="step-links">
                     {% if users.has_previous %}
-                        <a href="?{% if search_query %}search={{ search_query }}&{% endif %}page=1">Primeira</a>
-                        <a href="?{% if search_query %}search={{ search_query }}&{% endif %}page={{ users.previous_page_number }}">Anterior</a>
+                        <a href="?{% if search_query %}search={{ search_query }}&{% endif %}page=1">Primeira </a>
+                        <a href="?{% if search_query %}search={{ search_query }}&{% endif %}page={{ users.previous_page_number }}">Anterior </a>
                     {% endif %}
             
                     <span>Página {{ users.number }} de {{ users.paginator.num_pages }}</span>
             
                     {% if users.has_next %}
-                        <a href="?{% if search_query %}search={{ search_query }}&{% endif %}page={{ users.next_page_number }}">Próxima</a>
-                        <a href="?{% if search_query %}search={{ search_query }}&{% endif %}page={{ users.paginator.num_pages }}">Última</a>
+                        <a href="?{% if search_query %}search={{ search_query }}&{% endif %}page={{ users.next_page_number }}">Próxima </a>
+                        <a href="?{% if search_query %}search={{ search_query }}&{% endif %}page={{ users.paginator.num_pages }}">Última </a>
                     {% endif %}
                 </span>
+            </div>
+            <div class="submit-row">
+                <button type="submit" class="btn btn-danger">Excluir Selecionados</button>
             </div>
         </section>
     </div>

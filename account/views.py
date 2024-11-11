@@ -5,7 +5,7 @@ from django.contrib.auth.models import User, Group
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 
-
+@login_required
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -18,19 +18,25 @@ def login_view(request):
             messages.error(request, 'Usuário ou senha inválidos.')
     return render(request, 'account/login.html')
 
+
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('login')
 
 
 # View para listar usuários
+@login_required
 def user_list(request):
     # Obter o valor de busca, se existir
     search_query = request.GET.get('search', '')
 
     # Filtrar usuários com base no nome completo ou nome de usuário
     if search_query:
-        users = User.objects.filter(username__icontains=search_query) | User.objects.filter(first_name__icontains=search_query) | User.objects.filter(last_name__icontains=search_query)
+        users = (User.objects.filter(username__icontains=search_query) | 
+                 User.objects.filter(first_name__icontains=search_query) | 
+                 User.objects.filter(last_name__icontains=search_query) |
+                 User.objects.filter(email__icontains=search_query))
     else:
         users = User.objects.all()
 
@@ -38,13 +44,15 @@ def user_list(request):
     users = users.prefetch_related('groups')
 
     # Configuração da paginação
-    paginator = Paginator(users, 10)  # 10 usuários por página
+    paginator = Paginator(users, 1)  # 10 usuários por página
     page_number = request.GET.get('page')
     users_page = paginator.get_page(page_number)
 
     return render(request, 'account/user-management.html', {'users': users_page, 'search_query': search_query})
 
+
 # View para adicionar usuário
+@login_required
 def add_user(request):
     if request.method == 'POST':
         full_name = request.POST.get('full_name')
@@ -83,6 +91,7 @@ def add_user(request):
 
 
 # View para editar usuário
+@login_required
 def edit_user(request, user_id):
     user = get_object_or_404(User, id=user_id)
 
@@ -115,7 +124,9 @@ def edit_user(request, user_id):
     groups = Group.objects.all()  # Para exibir no formulário
     return render(request, 'account/edit-user.html', {'user': user, 'groups': groups})
 
+
 # View para excluir usuário
+@login_required
 def delete_users(request):
     if request.method == 'POST':
         user_ids = request.POST.getlist('selected_users')
@@ -124,6 +135,7 @@ def delete_users(request):
     return redirect('user_list')
 
 
+@login_required
 def edit_profile(request):
     user = request.user
 
