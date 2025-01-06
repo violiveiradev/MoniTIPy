@@ -5,7 +5,7 @@ from django.contrib.auth.models import User, Group
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 
-#@login_required
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -44,11 +44,11 @@ def user_list(request):
     users = users.prefetch_related('groups')
 
     # Configuração da paginação
-    paginator = Paginator(users, 1)  # 10 usuários por página
+    paginator = Paginator(users, 10)  # 10 usuários por página
     page_number = request.GET.get('page')
     users_page = paginator.get_page(page_number)
 
-    return render(request, 'account/user-management.html', {'users': users_page, 'search_query': search_query})
+    return render(request, 'account/user-list.html', {'users': users_page, 'search_query': search_query})
 
 
 # View para adicionar usuário
@@ -125,16 +125,6 @@ def edit_user(request, user_id):
     return render(request, 'account/edit-user.html', {'user': user, 'groups': groups})
 
 
-# View para excluir usuário
-@login_required
-def delete_users(request):
-    if request.method == 'POST':
-        user_ids = request.POST.getlist('selected_users')
-        User.objects.filter(id__in=user_ids).delete()
-        messages.success(request, 'Usuários selecionados excluídos com sucesso.')
-    return redirect('user_list')
-
-
 @login_required
 def edit_profile(request):
     user = request.user
@@ -167,3 +157,13 @@ def edit_profile(request):
     
     groups = Group.objects.all()
     return render(request, 'account/edit-profile.html', {'user': user, 'groups': groups})
+
+
+# View para excluir usuário
+@login_required
+def delete_users(request):
+    if request.method == 'POST':
+        user_ids = request.POST.getlist('selected_users')
+        User.objects.filter(id__in=user_ids).delete()
+        messages.success(request, 'Usuários selecionados excluídos com sucesso.')
+    return redirect('user_list')

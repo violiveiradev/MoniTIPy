@@ -67,16 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
 function toggleDetails(row) {
-    // Encontra a linha de detalhes logo abaixo da linha principal
-    const detailsRow = row.parentElement.nextElementSibling;
-    
-    // Alterna a exibição da linha de detalhes
-    if (detailsRow.style.display === "table-row") {
-        detailsRow.style.display = "none";
-        row.classList.remove("active");
-    } else {
-        detailsRow.style.display = "table-row";
-        row.classList.add("active");
-    }
+    row.classList.toggle('expanded');
 }

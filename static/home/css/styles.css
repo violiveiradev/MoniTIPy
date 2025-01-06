@@ -199,6 +199,8 @@ main p{
     background-color: var(--hover-clr); /* Tom mais escuro no hover */
 }
 
+
+
 /* Estilos da tela de login */
 .form-body {
     min-height: 100vh;
@@ -443,45 +445,6 @@ table tbody tr td[colspan="4"] {
         width: 100%;
         color: var(--text-clr);
     }
-
-    .user-table {
-        width: 100%;
-    }
-
-    .user-table thead, 
-    .user-checkbox,
-    .user-name, 
-    .user-email, 
-    .user-group, 
-    .user-actions {
-        display: none;
-    }
-
-    .user-row {
-        display: flex;
-        flex-direction: column;
-        border: 1px solid var(--line-clr);
-        padding: 10px;
-        margin-bottom: 5px;
-        position: relative;
-    }
-
-    .user-row .user-first-name {
-        display: inline-flex;
-        align-items: center;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-
-    .user-row .field-label {
-        font-weight: bold;
-        margin-right: 5px;
-        display: inline;
-    }
-
-    .user-row.expanded .user-name, .user-row.expanded .user-email, .user-row.expanded .user-group, .user-row.expanded .user-actions {
-        display: flex;
-        margin-top: 5px;
-    }
     
 }
+

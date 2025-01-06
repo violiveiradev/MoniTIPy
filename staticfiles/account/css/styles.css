@@ -66,19 +66,35 @@ body {
     box-sizing: border-box;
 }
 
-.login-button {
+.btn {
     width: 100%;
     padding: 10px;
-    background-color: var(--accent-clr);
     border: none;
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
     font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
 }
 
-.login-button:hover {
+/* Botão de ação principal */
+.btn-accent {
+    background-color: var(--accent-clr);
+}
+
+.btn-accent:hover {
     background-color: var(--hover-clr);
+}
+
+/* Botão de perigo (danger) */
+.btn-danger {
+    background-color: #d9534f; /* Tom de vermelho para ações de perigo */
+}
+
+.btn-danger:hover {
+    background-color: #c9302c; /* Tom mais escuro no hover */
 }
 
 /* Estilos da tela de registro */
@@ -113,21 +129,6 @@ body {
     background-color: var(--base-clr);
     color: var(--text-clr);
     box-sizing: border-box;
-}
-
-.register-button {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--accent-clr);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.register-button:hover {
-    background-color: var(--hover-clr);
 }
 
 .form-group select {

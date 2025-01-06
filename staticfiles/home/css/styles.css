@@ -162,6 +162,42 @@ main p{
     }
 }
 
+/* Botoes */
+
+/* Botão padrão */
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+/* Botão de ação principal */
+.btn-accent {
+    background-color: var(--accent-clr);
+}
+
+.btn-accent:hover {
+    background-color: var(--hover-clr);
+}
+
+/* Botão de perigo (danger) */
+.btn-danger {
+    background-color: var(--accent-clr);
+    text-align: left;
+    margin-top: 20px;
+    width: unset;
+}
+
+.btn-danger:hover {
+    background-color: var(--hover-clr); /* Tom mais escuro no hover */
+}
 
 /* Estilos da tela de login */
 .form-body {
@@ -210,21 +246,6 @@ main p{
     box-sizing: border-box;
 }
 
-.login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--accent-clr);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.login-button:hover {
-    background-color: var(--hover-clr);
-}
-
 /* Estilos da tela de registro */
 .form-user-container {
     background-color: var(--base-clr);
@@ -259,21 +280,6 @@ main p{
     box-sizing: border-box;
 }
 
-.register-button {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--accent-clr);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.register-button:hover {
-    background-color: var(--hover-clr);
-}
-
 .form-group select {
     width: 100%;
     padding: 10px;
@@ -297,7 +303,7 @@ table {
 table th, table td {
     padding: 12px 15px;
     text-align: left;
-    /*border-bottom: 1px solid var(--line-clr);*/
+    border-bottom: 1px solid var(--line-clr);
     color: var(--text-clr);
 }
 
@@ -307,23 +313,13 @@ table th {
     text-transform: uppercase;
 }
 
-table tbody tr:nth-child(even) {
-    background-color: var(--hover-clr);
-}
-
 table tbody tr:hover {
-    background-color: var(--accent-clr);
+    background-color: var(--hover-clr);
     color: #ffffff; /* Texto branco no hover */
 }
 
-table a {
-    color: var(--accent-clr);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-table a:hover {
-    color: #ffffff;
+table svg {
+    fill: var(--text-clr);
 }
 
 /* Mensagem para quando a lista de usuários estiver vazia */
@@ -332,6 +328,10 @@ table tbody tr td[colspan="4"] {
     font-style: italic;
     color: var(--secondary-text-clr);
     padding: 20px;
+}
+
+.field-label {
+    display: none;
 }
 
 
@@ -419,7 +419,6 @@ table tbody tr td[colspan="4"] {
     /* Ajuste da tabela para ocupar toda a largura da tela e permitir rolagem horizontal */
     .container-table {
         overflow-x: auto;
-        width: 100%;
     }
 
     table {
@@ -430,31 +429,12 @@ table tbody tr td[colspan="4"] {
 
     table th, table td {
         padding: 8px; /* Reduzindo o padding das células */
+        border-bottom: none;
     }
 
     /* Ajuste para manter as ações de editar e excluir com um layout compacto */
-    table a {
-        font-size: 0.85rem; /* Reduzindo a fonte dos links */
-        padding: 5px 8px; /* Ajuste de padding nos links */
-    }
-
-    /* Linha de detalhes oculta por padrão */
-    .user-details {
-        display: none;
-    }
-    
-    .expandable-row {
-        cursor: pointer;
-    }
-    
-    .arrow {
-        font-size: 0.8em;
-        margin-left: 8px;
-    }
-    
-    /* Estilo quando expandido */
-    .expandable-row.active .arrow {
-        transform: rotate(180deg); /* Roda a seta para cima */
+    table svg {
+        fill: var(--text-clr);
     }
 
     /* Estilos da tela de registro */
@@ -463,5 +443,46 @@ table tbody tr td[colspan="4"] {
         width: 100%;
         color: var(--text-clr);
     }
+
+/*    .user-table {
+        width: 100%;
+    }
+
+    .user-table thead, 
+    .user-checkbox,
+    .user-name, 
+    .user-email, 
+    .user-group, 
+    .user-actions {
+        display: none;
+    }
+
+    .user-row {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--line-clr);
+        padding: 10px;
+        margin-bottom: 5px;
+        position: relative;
+    }
+
+    .user-row .user-first-name {
+        display: inline-flex;
+        align-items: center;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .user-row .field-label {
+        font-weight: bold;
+        margin-right: 5px;
+        display: inline;
+    }
+
+    .user-row.expanded .user-name, .user-row.expanded .user-email, .user-row.expanded .user-group, .user-row.expanded .user-actions {
+        display: flex;
+        margin-top: 5px;
+    }*/
     
 }
+
